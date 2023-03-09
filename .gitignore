@@ -1,0 +1,6 @@
+/node_modules
+/servidor-api/node_modules
+
+## IDEs
+.idea
+.vscode
