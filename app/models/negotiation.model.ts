@@ -1,9 +1,9 @@
 export class NegotiationModel {
-  private _amount
-  private _date
-  private _quantity
+  private _amount: number
+  private _date: Date
+  private _quantity: number
 
-  constructor (amount, date, quantity) {
+  constructor (amount: number, date: Date, quantity: number) {
     this._amount = amount
     this._date = date
     this._quantity = quantity

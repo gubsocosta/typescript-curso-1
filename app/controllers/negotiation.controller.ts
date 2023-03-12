@@ -1,7 +1,9 @@
+import { NegotiationModel } from "../models/negotiation.model.js"
+
 export class NegotiationController {
-  private inputAmount
-  private inputDate
-  private inputQuantity
+  private inputAmount: HTMLInputElement
+  private inputDate: HTMLInputElement
+  private inputQuantity: HTMLInputElement
 
   constructor() {
     this.inputAmount = document.querySelector('#amount')
@@ -9,7 +11,17 @@ export class NegotiationController {
     this.inputQuantity =  document.querySelector('#quantity')
   }
 
-  add() {
-    console.log(this.inputAmount, this.inputDate, this.inputQuantity)
+  private formatToDate(input: HTMLInputElement) {
+    const regex = /-/g 
+    return new Date(input.value.replace(regex, ','))
   }
+
+  add() {
+    const amount = parseFloat(this.inputAmount.value)
+    const date = this.formatToDate(this.inputDate)
+    const quantity = parseInt(this.inputQuantity.value)
+
+    const model = new NegotiationModel(amount, date, quantity)
+  }
+
 }
