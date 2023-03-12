@@ -1,4 +1,4 @@
-export class Negotiation {
+export class NegotiationModel {
   private _amount
   private _date
   private _quantity
