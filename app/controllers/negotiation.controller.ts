@@ -11,17 +11,20 @@ export class NegotiationController {
     this.inputQuantity =  document.querySelector('#quantity')
   }
 
-  private formatToDate(input: HTMLInputElement) {
+  private formatToDate(input: HTMLInputElement): Date {
     const regex = /-/g 
     return new Date(input.value.replace(regex, ','))
   }
 
-  add() {
+  private makeNegotiation(): NegotiationModel {
     const amount = parseFloat(this.inputAmount.value)
     const date = this.formatToDate(this.inputDate)
     const quantity = parseInt(this.inputQuantity.value)
-
-    const model = new NegotiationModel(amount, date, quantity)
+  
+    return new NegotiationModel(amount, date, quantity)
   }
 
+  add(): void {
+    console.log(this.makeNegotiation)
+  }
 }

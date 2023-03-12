@@ -9,19 +9,19 @@ export class NegotiationModel {
     this._quantity = quantity
   }
 
-  get amount () {
+  get amount (): number {
     return this._amount
   }
 
-  get date () {
+  get date (): Date {
     return this._date
   }
 
-  get quatity () {
+  get quatity (): number {
     return this._quantity
   }
 
-  get volume () {
+  get volume (): number {
     return this._amount * this._quantity
   }
 }

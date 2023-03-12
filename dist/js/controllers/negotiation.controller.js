@@ -9,10 +9,13 @@ export class NegotiationController {
         const regex = /-/g;
         return new Date(input.value.replace(regex, ','));
     }
-    add() {
+    makeNegotiation() {
         const amount = parseFloat(this.inputAmount.value);
         const date = this.formatToDate(this.inputDate);
         const quantity = parseInt(this.inputQuantity.value);
-        const model = new NegotiationModel(amount, date, quantity);
+        return new NegotiationModel(amount, date, quantity);
+    }
+    add() {
+        console.log(this.makeNegotiation);
     }
 }
