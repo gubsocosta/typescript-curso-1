@@ -24,7 +24,15 @@ export class NegotiationController {
     return new NegotiationModel(amount, date, quantity)
   }
 
+  private clearForm(): void {
+    this.inputAmount.value = ''
+    this.inputDate.value = ''
+    this.inputQuantity.value = ''
+    this.inputDate.focus()
+  }
+
   add(): void {
-    console.log(this.makeNegotiation)
+    console.log(this.makeNegotiation())
+    this.clearForm()
   }
 }

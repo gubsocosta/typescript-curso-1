@@ -15,7 +15,14 @@ export class NegotiationController {
         const quantity = parseInt(this.inputQuantity.value);
         return new NegotiationModel(amount, date, quantity);
     }
+    clearForm() {
+        this.inputAmount.value = '';
+        this.inputDate.value = '';
+        this.inputQuantity.value = '';
+        this.inputDate.focus();
+    }
     add() {
-        console.log(this.makeNegotiation);
+        console.log(this.makeNegotiation());
+        this.clearForm();
     }
 }
