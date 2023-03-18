@@ -1,17 +1,20 @@
 import { NegotiationList } from "../models/negotiation-list.model.js";
 import { NegotiationModel } from "../models/negotiation.model.js";
+import { NegotiatioView } from "../views/negotiation.view.js";
 export class NegotiationController {
     constructor() {
         this.negotiationList = new NegotiationList();
+        this.negotiationView = new NegotiatioView('#negotiation-view');
         this.inputAmount = document.querySelector('#amount');
         this.inputDate = document.querySelector('#date');
         this.inputQuantity = document.querySelector('#quantity');
+        this.negotiationView.update(this.negotiationList);
     }
     formatToDate(input) {
         const regex = /-/g;
         return new Date(input.value.replace(regex, ','));
     }
-    makeNegotiation() {
+    toNegotiation() {
         const amount = parseFloat(this.inputAmount.value);
         const date = this.formatToDate(this.inputDate);
         const quantity = parseInt(this.inputQuantity.value);
@@ -24,8 +27,8 @@ export class NegotiationController {
         this.inputDate.focus();
     }
     add() {
-        this.negotiationList.add(this.makeNegotiation());
-        console.log(this.negotiationList.list());
+        this.negotiationList.add(this.toNegotiation());
+        this.negotiationView.update(this.negotiationList);
         this.clearForm();
     }
 }

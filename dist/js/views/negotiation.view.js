@@ -1,14 +1,9 @@
-import { NegotiationList } from "../models/negotiation-list.model.js"
-
 export class NegotiatioView {
-  private parentElement: HTMLElement
-
-  constructor(parentElementSelector: string) {
-    this.parentElement = document.querySelector(parentElementSelector)
-  }
-
-  template(negotiationList: NegotiationList): string {
-    return `
+    constructor(parentElementSelector) {
+        this.parentElement = document.querySelector(parentElementSelector);
+    }
+    template(negotiationList) {
+        return `
     <table class="table table-hover table-bordered">
       <thead>
         <tr>
@@ -19,20 +14,19 @@ export class NegotiatioView {
       </thead>
       <tbody>
         ${negotiationList.list().map(negotiation => {
-          return `
+            return `
           <tr>
             <td>${Intl.DateTimeFormat().format(negotiation.date)}</td>
             <td>${negotiation.quantity}</td>
             <td>${negotiation.amount}</td>
           </tr>
-          `
+          `;
         }).join('')}
       </tbody>
     </table>
-    `
-  }
-
-  update(negotiationList: NegotiationList): void {
-    this.parentElement.innerHTML = this.template(negotiationList)
-  }
+    `;
+    }
+    update(negotiationList) {
+        this.parentElement.innerHTML = this.template(negotiationList);
+    }
 }

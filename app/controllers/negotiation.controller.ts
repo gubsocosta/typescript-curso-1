@@ -1,16 +1,19 @@
 import { NegotiationList } from "../models/negotiation-list.model.js"
 import { NegotiationModel } from "../models/negotiation.model.js"
+import { NegotiatioView } from "../views/negotiation.view.js"
 
 export class NegotiationController {
   private inputAmount: HTMLInputElement
   private inputDate: HTMLInputElement
   private inputQuantity: HTMLInputElement
   private negotiationList: NegotiationList = new NegotiationList()
+  private negotiationView = new NegotiatioView('#negotiation-view')
 
   constructor() {
     this.inputAmount = document.querySelector('#amount')
     this.inputDate = document.querySelector('#date')
     this.inputQuantity =  document.querySelector('#quantity')
+    this.negotiationView.update(this.negotiationList)
   }
 
   private formatToDate(input: HTMLInputElement): Date {
@@ -18,7 +21,7 @@ export class NegotiationController {
     return new Date(input.value.replace(regex, ','))
   }
 
-  private makeNegotiation(): NegotiationModel {
+  private toNegotiation(): NegotiationModel {
     const amount = parseFloat(this.inputAmount.value)
     const date = this.formatToDate(this.inputDate)
     const quantity = parseInt(this.inputQuantity.value)
@@ -34,8 +37,8 @@ export class NegotiationController {
   }
 
   add(): void {
-    this.negotiationList.add(this.makeNegotiation())
-    console.log(this.negotiationList.list())
+    this.negotiationList.add(this.toNegotiation())
+    this.negotiationView.update(this.negotiationList)
     this.clearForm()
   }
 }
