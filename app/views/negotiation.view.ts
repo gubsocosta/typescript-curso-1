@@ -1,7 +1,7 @@
 import { NegotiationList } from "../models/negotiation-list.model.js"
 import { BaseView } from './base.view.js'
 
-export class NegotiatioView extends BaseView{
+export class NegotiatioView extends BaseView<NegotiationList>{
   
   template(negotiationList: NegotiationList): string {
     return `
@@ -26,9 +26,5 @@ export class NegotiatioView extends BaseView{
       </tbody>
     </table>
     `
-  }
-
-  update(negotiationList: NegotiationList): void {
-    this.parentElement.innerHTML = this.template(negotiationList)
   }
 }
