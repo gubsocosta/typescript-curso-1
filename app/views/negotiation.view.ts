@@ -1,12 +1,8 @@
 import { NegotiationList } from "../models/negotiation-list.model.js"
+import { BaseView } from './base.view.js'
 
-export class NegotiatioView {
-  private parentElement: HTMLElement
-
-  constructor(parentElementSelector: string) {
-    this.parentElement = document.querySelector(parentElementSelector)
-  }
-
+export class NegotiatioView extends BaseView{
+  
   template(negotiationList: NegotiationList): string {
     return `
     <table class="table table-hover table-bordered">

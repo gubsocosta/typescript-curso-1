@@ -1,9 +1,6 @@
-export class MessageView {
-  private parentElement: HTMLElement
+import { BaseView } from './base.view.js'
 
-  constructor(readonly parentSelector: string) {
-    this.parentElement = document.querySelector(parentSelector)
-  }
+export class MessageView extends BaseView {
 
   template(model: string): string {
     return `<p class="alert alert-info">${model}</p>`
