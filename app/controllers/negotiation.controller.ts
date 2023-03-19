@@ -1,13 +1,16 @@
 import { NegotiationList } from "../models/negotiation-list.model.js"
 import { NegotiationModel } from "../models/negotiation.model.js"
+import { MessageView } from "../views/message.view.js"
 import { NegotiatioView } from "../views/negotiation.view.js"
 
 export class NegotiationController {
   private inputAmount: HTMLInputElement
   private inputDate: HTMLInputElement
   private inputQuantity: HTMLInputElement
-  private negotiationList: NegotiationList = new NegotiationList()
-  private negotiationView = new NegotiatioView('#negotiation-view')
+  private readonly negotiationList: NegotiationList = new NegotiationList()
+  private readonly negotiationView = new NegotiatioView('#negotiation-view')
+  private readonly messageView = new MessageView('#message-view')
+  
 
   constructor() {
     this.inputAmount = document.querySelector('#amount')
@@ -39,6 +42,7 @@ export class NegotiationController {
   add(): void {
     this.negotiationList.add(this.toNegotiation())
     this.negotiationView.update(this.negotiationList)
+    this.messageView.update('Negociação adicionada com sucesso')
     this.clearForm()
   }
 }
