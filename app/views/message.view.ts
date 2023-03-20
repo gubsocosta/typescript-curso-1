@@ -1,8 +1,7 @@
-import { BaseView } from './base.view.js'
+import { BaseView } from "./base.view.js";
 
 export class MessageView extends BaseView<string> {
-
   protected template(model: string): string {
-    return `<p class="alert alert-info">${model}</p>`
+    return `<p class="alert alert-info">${model}</p>`;
   }
 }

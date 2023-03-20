@@ -45,6 +45,7 @@ export class NegotiationController {
 
   add(): void {
     this.negotiationList.add(this.toNegotiation());
+    this.refreshView()
     this.clearForm();
   }
 }

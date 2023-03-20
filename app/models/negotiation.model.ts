@@ -6,10 +6,10 @@ export class NegotiationModel {
   ) {}
 
   get date(): Date {
-    return new Date(this._date.getTime())
+    return new Date(this._date.getTime());
   }
 
   get volume(): number {
-    return this.amount * this.quantity
+    return this.amount * this.quantity;
   }
 }
