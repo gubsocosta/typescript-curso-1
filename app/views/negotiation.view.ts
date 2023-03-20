@@ -2,6 +2,10 @@ import { NegotiationList } from "../models/negotiation-list.model.js"
 import { BaseView } from './base.view.js'
 
 export class NegotiatioView extends BaseView<NegotiationList>{
+
+  private formatDate(date: Date): string {
+    return Intl.DateTimeFormat().format(date)
+  }
   
   protected template(negotiationList: NegotiationList): string {
     return `
@@ -17,7 +21,7 @@ export class NegotiatioView extends BaseView<NegotiationList>{
         ${negotiationList.list().map(negotiation => {
           return `
           <tr>
-            <td>${Intl.DateTimeFormat().format(negotiation.date)}</td>
+            <td>${this.formatDate(negotiation.date)}</td>
             <td>${negotiation.quantity}</td>
             <td>${negotiation.amount}</td>
           </tr>
