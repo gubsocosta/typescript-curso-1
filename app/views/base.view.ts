@@ -5,7 +5,7 @@ export abstract class BaseView<T> {
     this.parentElement = document.querySelector(parentSelector)
   }
 
-  abstract template(model: T): string;
+  protected abstract template(model: T): string;
 
   update(model: T) {
     this.parentElement.innerHTML = this.template(model)

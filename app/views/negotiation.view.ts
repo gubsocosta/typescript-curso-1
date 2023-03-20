@@ -3,7 +3,7 @@ import { BaseView } from './base.view.js'
 
 export class NegotiatioView extends BaseView<NegotiationList>{
   
-  template(negotiationList: NegotiationList): string {
+  protected template(negotiationList: NegotiationList): string {
     return `
     <table class="table table-hover table-bordered">
       <thead>
