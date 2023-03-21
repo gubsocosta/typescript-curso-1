@@ -1,5 +1,5 @@
-import { NegotiationList } from "../models/negotiation-list.model.js";
-import { BaseView } from "./base.view.js";
+import { NegotiationList } from '../models/negotiation-list.model.js';
+import { BaseView } from './base.view.js';
 
 export class NegotiatioView extends BaseView<NegotiationList> {
   private formatDate(date: Date): string {
@@ -28,7 +28,7 @@ export class NegotiatioView extends BaseView<NegotiationList> {
           </tr>
           `;
           })
-          .join("")}
+          .join('')}
       </tbody>
     </table>
     `;

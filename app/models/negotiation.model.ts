@@ -1,4 +1,4 @@
-import { DateUtils } from "../utils/date.utils.js";
+import { DateUtils } from '../utils/date.utils.js';
 
 export class NegotiationModel {
   constructor(
@@ -15,7 +15,11 @@ export class NegotiationModel {
     return this.amount * this.quantity;
   }
 
-  static createFrom(amountString: string, dateString: string, quantityString: string): NegotiationModel {
+  static createFrom(
+    amountString: string,
+    dateString: string,
+    quantityString: string
+  ): NegotiationModel {
     const parsedAmount = parseFloat(amountString);
     const parsedDate = DateUtils.convertStringToDate(dateString);
     const parsedQuantity = parseInt(quantityString);
