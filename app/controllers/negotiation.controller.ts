@@ -1,3 +1,4 @@
+import { DaysOfWeek } from "../enums/days-of-week.enum.js";
 import { NegotiationList } from "../models/negotiation-list.model.js";
 import { NegotiationModel } from "../models/negotiation.model.js";
 import { MessageView } from "../views/message.view.js";
@@ -43,9 +44,23 @@ export class NegotiationController {
     this.messageView.update("Negociação adicionada com sucesso");
   }
 
+  private isBussinesDay(date: Date): boolean {
+    const noWorkingDays = [DaysOfWeek.SUNDAY, DaysOfWeek.SATURDAY];
+
+    return !noWorkingDays.includes(date.getDay())
+  }
+
   add(): void {
+    const negotiation = this.toNegotiation();
+
+    if (!this.isBussinesDay(negotiation.date)) {
+      this.messageView.update(
+        "Apenas negociações em dias úteis são permitidas"
+      );
+      return;
+    }
     this.negotiationList.add(this.toNegotiation());
-    this.refreshView()
+    this.refreshView();
     this.clearForm();
   }
 }

@@ -1,7 +1,7 @@
 export abstract class BaseView<T> {
   protected parentElement: HTMLElement;
 
-  constructor(readonly parentSelector: string) {
+  constructor(parentSelector: string) {
     this.parentElement = document.querySelector(parentSelector);
   }
 
