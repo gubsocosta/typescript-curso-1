@@ -1,6 +1,6 @@
-import { DaysOfWeek } from "../enums/days-of-week.enum.js";
 import { NegotiationList } from "../models/negotiation-list.model.js";
 import { NegotiationModel } from "../models/negotiation.model.js";
+import { DateUtils } from "../utils/date.utils.js";
 import { MessageView } from "../views/message.view.js";
 import { NegotiatioView } from "../views/negotiation.view.js";
 
@@ -19,19 +19,6 @@ export class NegotiationController {
     this.negotiationView.update(this.negotiationList);
   }
 
-  private formatToDate(input: HTMLInputElement): Date {
-    const regex = /-/g;
-    return new Date(input.value.replace(regex, ","));
-  }
-
-  private toNegotiation(): NegotiationModel {
-    const amount = parseFloat(this.inputAmount.value);
-    const date = this.formatToDate(this.inputDate);
-    const quantity = parseInt(this.inputQuantity.value);
-
-    return new NegotiationModel(amount, date, quantity);
-  }
-
   private clearForm(): void {
     this.inputAmount.value = "";
     this.inputDate.value = "";
@@ -44,22 +31,21 @@ export class NegotiationController {
     this.messageView.update("Negociação adicionada com sucesso");
   }
 
-  private isBussinesDay(date: Date): boolean {
-    const noWorkingDays = [DaysOfWeek.SUNDAY, DaysOfWeek.SATURDAY];
-
-    return !noWorkingDays.includes(date.getDay())
-  }
-
   add(): void {
-    const negotiation = this.toNegotiation();
+    const negotiation = NegotiationModel.createFrom(
+      this.inputAmount.value,
+      this.inputDate.value,
+      this.inputQuantity.value
+    );
 
-    if (!this.isBussinesDay(negotiation.date)) {
+    if (!DateUtils.isBussinesDay(negotiation.date)) {
       this.messageView.update(
         "Apenas negociações em dias úteis são permitidas"
       );
       return;
     }
-    this.negotiationList.add(this.toNegotiation());
+
+    this.negotiationList.add(negotiation);
     this.refreshView();
     this.clearForm();
   }
