@@ -1,3 +1,4 @@
+import { logTotalRunningTime } from '../decorators/log-total-running-time.decorator.js';
 import { NegotiationList } from '../models/negotiation-list.model.js';
 import { NegotiationModel } from '../models/negotiation.model.js';
 import { DateUtils } from '../utils/date.utils.js';
@@ -33,6 +34,7 @@ export class NegotiationController {
     this.messageView.update('Negociação adicionada com sucesso');
   }
 
+  @logTotalRunningTime()
   add(): void {
     const negotiation = NegotiationModel.createFrom(
       this.inputAmount.value,

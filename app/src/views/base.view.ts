@@ -1,3 +1,4 @@
+import { logTotalRunningTime } from '../decorators/log-total-running-time.decorator.js';
 import { SelectorNotExistException } from '../exceptions/selector-not-exist.exception.js';
 
 export abstract class BaseView<T> {
@@ -28,6 +29,7 @@ export abstract class BaseView<T> {
     return template.replace(/<script>[\s\S]*?<\/script>/, '');
   }
 
+  @logTotalRunningTime()
   update(model: T) {
     let template = this.template(model);
 
